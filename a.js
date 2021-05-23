@@ -24,3 +24,9 @@ const a = (elementName, ...rest) => {
 };
 
 export const an = a
+
+export const render = (what, where) => {
+  const node = document.querySelector(where)
+  node.innerHTML = ''
+  node.appendChild(what)
+}
