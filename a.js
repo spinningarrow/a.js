@@ -22,3 +22,5 @@ const a = (elementName, ...rest) => {
   );
   return _(elementName, attributesMap, text, children);
 };
+
+export const an = a
