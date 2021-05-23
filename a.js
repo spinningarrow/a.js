@@ -1,26 +1,25 @@
-const _ = (elementName, attributesMap, text, children) => {
+const _ = (elementName, propertiesMap, text, children) => {
   const element = document.createElement(elementName);
-  Object.entries(attributesMap).forEach(([attr, value]) => {
-    console.log(attr, value);
-    element[attr] = value;
+  Object.entries(propertiesMap).forEach(([property, value]) => {
+    element[property] = value;
   });
   if (text) element.innerText = text;
   children.forEach((child) => element.appendChild(child));
   return element;
 };
 
-const a = (elementName, ...rest) => {
-  const { attributesMap, text, children } = rest.reduce(
+export const a = (elementName, ...rest) => {
+  const { propertiesMap, text, children } = rest.reduce(
     (memo, next) => {
       if (typeof next === "string") memo.text = next;
       else if (next instanceof HTMLElement) memo.children = [...memo.children, next];
-      else if (typeof next === "object") memo.attributesMap = next;
+      else if (typeof next === "object") memo.propertiesMap = next;
 
       return memo;
     },
-    { attributesMap: {}, text: null, children: [] }
+    { propertiesMap: {}, text: null, children: [] }
   );
-  return _(elementName, attributesMap, text, children);
+  return _(elementName, propertiesMap, text, children);
 };
 
 export const an = a
