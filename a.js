@@ -13,8 +13,8 @@ const a = (elementName, ...rest) => {
   const { attributesMap, text, children } = rest.reduce(
     (memo, next) => {
       if (typeof next === "string") memo.text = next;
-      if (next instanceof HTMLElement) memo.children = [...memo.children, next];
-      if (typeof next === "object") memo.attributesMap = next;
+      else if (next instanceof HTMLElement) memo.children = [...memo.children, next];
+      else if (typeof next === "object") memo.attributesMap = next;
 
       return memo;
     },
